@@ -2,10 +2,10 @@ import {createStore,action} from 'easy-peasy'
 const store = createStore({
   activeSongs:[],
   activeSong:null,
-  changeActiveSongs:action((state,payload)=>{
+  changeActiveSongs:action((state:any,payload)=>{
     state.activeSongs= payload;
   }), 
-   changeActiveSong:action((state,payload)=>{
+   changeActiveSong:action((state:any,payload)=>{
     state.activeSong= payload;
   }), 
 
@@ -13,7 +13,7 @@ const store = createStore({
 export default store
 // lib/store.ts
 export interface StoreModel {
-  changeActiveSong: (song) => void;
+  changeActiveSong: (song: any) => void;
 }
 // lib/store/model.ts
 
@@ -25,7 +25,7 @@ export interface Song {
   // Add more fields as needed
 }
 
-export interface Model {
+export interface StoreModel {
   activeSongs: Song[];
   activeSong: Song | null;
 }

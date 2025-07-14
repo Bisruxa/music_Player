@@ -79,27 +79,31 @@ const onLoad = () => {
   tryGetDuration()
 }
 
-const onSeek =(e)=>{
-  setSeek(parseFloat(e[0]))
-  soundRef.current.seek(e[0])
+const onSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const newTime = parseFloat(e.target.value)
+  setSeek(newTime)
+  soundRef.current?.seek(newTime)
 }
- useEffect(() => {
-  let timerId
+useEffect(() => {
+  let animationFrameId: number;
 
-  if (playing && !isSeeking && soundRef.current) {
-    const updateSeek = () => {
-      if (soundRef.current) {
-        setSeek(soundRef.current.seek())
-        timerId = requestAnimationFrame(updateSeek)
+  const updateSeek = () => {
+    if (soundRef.current && !isSeeking) {
+      const currentSeek = soundRef.current.seek()
+      if (typeof currentSeek === 'number') {
+        setSeek(currentSeek)
       }
     }
-
-    timerId = requestAnimationFrame(updateSeek)
-    return () => cancelAnimationFrame(timerId)
+    animationFrameId = requestAnimationFrame(updateSeek)
   }
 
-  return () => cancelAnimationFrame(timerId)
+  if (playing) {
+    animationFrameId = requestAnimationFrame(updateSeek)
+  }
+
+  return () => cancelAnimationFrame(animationFrameId)
 }, [playing, isSeeking])
+
 
 
    useEffect(() => {
