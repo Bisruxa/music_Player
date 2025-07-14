@@ -17,7 +17,7 @@ export const usePlaylist = () => {
   const { data, error } = useSWR('/playlist', fetcher)
   console.log(data)
   return {
-    playlists: (data as any) || [],
+    playlists: (data) || [],
     isLoading: !data && !error,
     isError: error,
   }

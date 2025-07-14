@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 import prisma from './prisma'
 import { cookies } from 'next/headers'
+import User from './prisma'
 
 type Handler = (
   req: NextRequest,
-  user: any
+  user: User
 ) => Promise<NextResponse | Response>
 
 export const validateRoute = (handler: Handler) => {
@@ -28,6 +29,7 @@ export const validateRoute = (handler: Handler) => {
       // Call your handler with the request and user
       return await handler(req, user)
     } catch (error) {
+      console.log(error);
       return NextResponse.json({ error: 'Not Authorized' }, { status: 401 })
     }
   }

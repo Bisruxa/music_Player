@@ -2,8 +2,8 @@ import Player from "./player"
 import { useStoreState } from 'easy-peasy'
 import type { Model } from "@/lib/store"
 const PlayerBox= ()=>{
-  const songs = useStoreState<Model>((state: any) => state.activeSongs)
-  const activeSong = useStoreState<Model>((state: any) => state.activeSong)
+  const songs = useStoreState<Model>((state) => state.activeSongs)
+  const activeSong = useStoreState<Model>((state) => state.activeSong)
   return(
     <div className="w-screen h-[100px] bg-gray-900 p-4 flex items-center justify-between">
   {/* Left: Song Info */}
