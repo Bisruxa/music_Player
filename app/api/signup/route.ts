@@ -1,5 +1,3 @@
-// app/api/signin/route.ts
-
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'

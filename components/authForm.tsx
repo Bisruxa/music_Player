@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation' 
 
-import { useSWRConfig } from 'swr'
-import NextImage from 'next/image'
+// import { useSWRConfig } from 'swr'
+// import NextImage from 'next/image'
 import { auth } from '../lib/mutations'
 
 interface AuthFormProps {

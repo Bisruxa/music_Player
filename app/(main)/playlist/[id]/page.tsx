@@ -2,8 +2,8 @@ import { cookies } from 'next/headers'
 import { validateToken } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 import GradientLayout from '@/components/gradientLayout'
-import Image from 'next/image'
-import placeholder from '@/public/placeholder.jpg'
+// import Image from 'next/image'
+// import placeholder from '@/public/placeholder.jpg'
 import SongTable from '@/components/songsTable'
 
 type Props = {
