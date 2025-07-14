@@ -1,7 +1,7 @@
 'use client'
 import useSWR from 'swr'
 import fetcher from './fetcher'
-import { ClientPageRoot } from 'next/dist/client/components/client-page'
+// import { ClientPageRoot } from 'next/dist/client/components/client-page'
 
 export const useMe = () => {
   const { data, error } = useSWR('/me', fetcher)

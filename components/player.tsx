@@ -12,9 +12,10 @@ import {
 import { useStoreActions } from 'easy-peasy'
 import ReactHowler from 'react-howler'
 import { formatTime } from '@/lib/formatters'
+import { StoreModel } from '@/lib/store'
 
 const Player = ({songs,activeSong}) => {
-  const [progress, setProgress] = useState(30);
+  // const [progress, setProgress] = useState(30);
   const [shuffle , setShuffle ]= useState(false);
   const [playing, setPlaying] = useState(true)
   const [seek,setSeek] = useState(0.0)
@@ -24,7 +25,7 @@ const Player = ({songs,activeSong}) => {
   const [isSeeking,setIsSeeking]= useState(false)
   const soundRef = useRef(null);
   const repeatRef = useRef(repeat)
-  const setActiveSong = useStoreActions((state: any) => state.changeActiveSong)
+ const setActiveSong = useStoreActions<StoreModel>((state) => state.changeActiveSong);
 
   const setPlayState = (value)=>{
     setPlaying(value)
@@ -154,7 +155,7 @@ const onSeek =(e)=>{
             {/* Filled progress bar */}
             <div
               className="absolute h-1 bg-green-500 rounded-lg top-1/2 -translate-y-1/2"
-              style={{ width: `${progress}%` }}
+               style={{ width: `${(seek / duration) * 100}%` }}
             ></div>
 
             {/* Slider */}

@@ -18,6 +18,7 @@ export async function POST(req: Request) {
       },
     })
   } catch (e) {
+    console.error('Error creating user:', e);
     return NextResponse.json({ error: 'User already exists' }, { status: 401 })
   }
 
