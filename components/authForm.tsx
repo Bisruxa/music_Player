@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation' 
 
 // import { useSWRConfig } from 'swr'
-// import NextImage from 'next/image'
+import NextImage from 'next/image'
 import { auth } from '../lib/mutations'
 
 interface AuthFormProps {
@@ -34,12 +34,17 @@ const AuthForm = ({ mode }: AuthFormProps) => {
   return (
     <div className="h-screen w-screen bg-black text-white flex flex-col">
       <div className="flex justify-center items-center h-[100px] border-b border-white">
-        {/* <NextImage src="/logo.svg" height={60} width={120} alt="Logo" /> */}
-        {mode}
+        <NextImage
+          src="/logo-dark-transparent.png"
+          height={120}
+          width={240}
+          alt="Logo"
+        />
       </div>
 
       <div className="flex justify-center items-center flex-grow">
         <div className="bg-gray-900 p-12 rounded-md w-full max-w-md">
+          <div className='text-3xl font-bold flex justify-center mb-3'>{mode}</div>
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             {mode === "signup" && (
               <div>
