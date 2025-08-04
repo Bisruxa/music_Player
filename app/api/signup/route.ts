@@ -6,7 +6,7 @@ import prisma from '@/lib/prisma' // Update this path if needed
 export async function POST(req: Request) {
   const salt = bcrypt.genSaltSync()
   const body = await req.json()
-  const { email, password } = body
+  const { email, password,firstName,lastName } = body
 
   let user
 
@@ -15,6 +15,8 @@ export async function POST(req: Request) {
       data: {
         email,
         password: bcrypt.hashSync(password, salt),
+        firstName,
+        lastName
       },
     })
   } catch (e) {

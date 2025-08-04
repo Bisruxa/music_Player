@@ -5,7 +5,8 @@ export const auth = (
   body: { 
     email: string;
     password: string ;
-    name?:string;}
+    firstName?:string;
+    lastName?:string;}
 ) => {
   return fetcher(`/${mode}`, body)
 }

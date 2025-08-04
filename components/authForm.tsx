@@ -15,16 +15,21 @@ const AuthForm = ({ mode }: AuthFormProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [firstName,setFirstName]= useState('')
+  const [lastName ,setLastName]= useState('')
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+     const userData =
+       mode == "signup" ? { email, password, firstName,lastName } : { email, password };
 
-    await auth(mode, { email, password })
+    await auth(mode, userData)
     setIsLoading(false)
     router.push('/')
   }
+ 
 
   return (
     <div className="h-screen w-screen bg-black text-white flex flex-col">
@@ -36,6 +41,26 @@ const AuthForm = ({ mode }: AuthFormProps) => {
       <div className="flex justify-center items-center flex-grow">
         <div className="bg-gray-900 p-12 rounded-md w-full max-w-md">
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+            {mode === "signup" && (
+              <div>
+                <input
+                  placeholder="First Name"
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+                  required
+                />
+                <input
+                  placeholder="Last Name"
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-500 mt-4 w-full"
+                  required
+                />
+              </div>
+            )}
             <input
               placeholder="Email"
               type="email"
@@ -55,13 +80,13 @@ const AuthForm = ({ mode }: AuthFormProps) => {
               disabled={isLoading}
               className="px-4 py-3 rounded-md bg-green-600 hover:bg-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Loading...' : mode}
+              {isLoading ? "Loading..." : mode}
             </button>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default AuthForm
