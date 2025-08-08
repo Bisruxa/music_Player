@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 // import { useSWRConfig } from 'swr'
 import NextImage from 'next/image'
 import { auth } from '../lib/mutations'
+import Link from 'next/link'
 
 interface AuthFormProps {
   mode: 'signin' | 'signup'
@@ -88,6 +89,21 @@ const AuthForm = ({ mode }: AuthFormProps) => {
               {isLoading ? "Loading..." : mode}
             </button>
           </form>
+       <div className='text-center mt-4'>
+        {
+          mode === "signin" ?(
+            <span className='flex flex-row justify-center items-center'>
+              <p>Don't have an account ? </p>
+              <Link href='./signup' className='ml-1 text-purple-500'>Signup</Link>
+            </span>
+          ):(
+            <span className='flex flex-row justify-center items-center'>
+              <p>Already have an account ?</p>
+              <Link href='./signin' className='ml-1 text-purple-500'>Signin</Link>
+            </span>
+          )
+        }
+       </div>
         </div>
       </div>
     </div>
